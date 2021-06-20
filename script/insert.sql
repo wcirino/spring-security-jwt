@@ -20,6 +20,25 @@ INSERT INTO `beneficiario` (`idlogin`,`nome_comp`,`cpfcnpj`,`RG`,`data_nasc`,`id
 INSERT INTO `beneficiario` (`idlogin`,`nome_comp`,`cpfcnpj`,`RG`,`data_nasc`,`idestado`,`telefone`,`celular`,`ativo`,`sexo`,`carteirinha`) VALUES (81,"Zelda Mckay","53729484378","9072990415084","1953-05-20 17:03:02",19,"96-878394870","12-666500256","1",2,"TD1761979"),(82,"Sage Bernard","21636050182","9502507240445","1902-01-06 11:31:39",24,"97-167735473","75-110852757","1",1,"EP6824659"),(83,"Tatiana Tate","96667265486","9595243798410","1999-06-01 21:17:18",24,"04-869375812","37-479061112","1",1,"YD1756205"),(84,"Basia Thornton","79201137950","1777848791252","1879-07-27 14:25:30",16,"68-259465968","37-812293537","1",2,"NY8563915"),(85,"Sybill Sawyer","31455808066","3005557072300","2020-06-05 07:36:59",9,"84-193888803","77-625649217","1",2,"PO1558875"),(86,"Hadley Frazier","32214197629","9968130889012","1921-09-02 02:37:58",17,"71-110148201","06-277298800","1",1,"QL4825726"),(87,"Amanda Cantu","24889738398","4823319241734","1931-08-27 06:50:08",13,"48-812482979","06-686059693","1",2,"XQ2864858"),(88,"Shelby Spence","62633861392","4935619309757","1938-01-06 20:56:27",13,"72-023534631","05-818427422","1",1,"FP0927275"),(89,"Hayley Ramsey","39321047164","1418927454973","2007-04-21 02:51:16",7,"19-445968525","18-879047270","1",2,"KR8906537"),(90,"Ocean Rios","19677330758","7542892108529","1910-10-17 12:51:42",21,"75-042685689","01-223311133","1",1,"WY3695977");
 INSERT INTO `beneficiario` (`idlogin`,`nome_comp`,`cpfcnpj`,`RG`,`data_nasc`,`idestado`,`telefone`,`celular`,`ativo`,`sexo`,`carteirinha`) VALUES (91,"Martina Singleton","49042098044","3357251110310","1967-08-24 11:04:53",3,"61-448954195","45-338534525","1",2,"FN2425559"),(92,"Athena Chase","39141453428","0783886779355","2009-10-16 16:42:14",22,"19-252955808","75-991941802","1",1,"QM6123395"),(93,"Nita Wilder","44951341709","8778093434211","1913-03-17 06:05:30",15,"65-293354599","03-489943415","1",2,"MQ7598686"),(94,"Mara Jennings","41987404145","8689089487526","1967-06-23 19:04:49",23,"40-132220860","84-669104724","1",2,"PP6243060"),(95,"Aubrey Mejia","22892714853","0250170443543","1959-05-19 04:05:08",23,"98-559702030","65-998994483","1",2,"TM2480060"),(96,"Justina Jones","04156457960","1196818686471","1910-09-25 23:07:48",17,"24-845824797","70-657955035","1",1,"RC2244390"),(97,"Shaine Dotson","76558387662","1787178574399","1991-05-26 23:27:42",21,"94-934259305","38-241971085","1",1,"NB6539792"),(98,"Zelenia Day","54156444938","4959930035724","1952-10-09 11:03:07",6,"29-457189557","77-267901068","1",1,"OY5229573"),(99,"Kylee Carroll","26540707036","2328018454051","1947-05-24 07:42:49",16,"57-226278512","73-974963420","1",1,"JG1369200"),(100,"Catherine Bonner","25723674727","5124005991699","1968-10-27 06:27:20",24,"74-682491761","91-272794309","1",1,"NK4320204");
 
+  insert into perfil (perfil) values("ADMIN");
+  insert into perfil (perfil) values("PERFIL BENEFICIARIO 1");
+  insert into perfil (perfil) values("PERFIL BENEFICIARIO 2");
+  insert into perfil (perfil) values("PERFIL BENEFICIARIO 3");
+  insert into perfil (perfil) values("PERFIL CONSULTA");
+  
+INSERT INTO `perfil_beneficiario` (`idlogin`,`idperfil`) VALUES (1,1),(1,2),(1,3),(2,1),(2,2),(3,2),(3,3),(4,5),(5,5),(6,5),(7,5),(8,5),(9,5),(10,5);
+INSERT INTO `perfil_beneficiario` (`idlogin`,`idperfil`) VALUES (11,5),(12,5),(13,5),(14,5),(15,5),(16,5),(17,5),(18,5),(19,5),(20,5);
+INSERT INTO `perfil_beneficiario` (`idlogin`,`idperfil`) VALUES (21,5),(22,5),(23,5),(24,5),(25,5),(26,5),(27,5),(28,5),(29,5),(30,5);
+INSERT INTO `perfil_beneficiario` (`idlogin`,`idperfil`) VALUES (31,5),(32,5),(33,5),(34,5),(35,5),(36,5),(37,5),(38,5),(39,5),(40,5);
+INSERT INTO `perfil_beneficiario` (`idlogin`,`idperfil`) VALUES (41,5),(42,5),(43,5),(44,5),(45,5),(46,5),(47,5),(48,5),(49,5),(50,5);
+INSERT INTO `perfil_beneficiario` (`idlogin`,`idperfil`) VALUES (51,5),(52,5),(53,5),(54,5),(55,5),(56,5),(57,5),(58,5),(59,5),(60,5);
+INSERT INTO `perfil_beneficiario` (`idlogin`,`idperfil`) VALUES (61,5),(62,5),(63,5),(64,5),(65,5),(66,5),(67,5),(68,5),(69,5),(70,5);
+INSERT INTO `perfil_beneficiario` (`idlogin`,`idperfil`) VALUES (71,5),(72,5),(73,5),(74,5),(75,5),(76,5),(77,5),(78,5),(79,5),(80,5);
+INSERT INTO `perfil_beneficiario` (`idlogin`,`idperfil`) VALUES (81,5),(82,5),(83,5),(84,5),(85,5),(86,5),(87,5),(88,5),(89,5),(90,5);
+INSERT INTO `perfil_beneficiario` (`idlogin`,`idperfil`) VALUES (91,5),(92,5),(93,5),(94,5),(95,5),(96,5),(97,5),(98,5),(99,5);
+  
+ select * from perfil_beneficiario;
+
 insert into estado (estado) values ('Acre');
 insert into estado (estado) values ('Alagoas');
 insert into estado (estado) values ('Amapá');
