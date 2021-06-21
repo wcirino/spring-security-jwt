@@ -9,6 +9,10 @@ email varchar(300) not null,
 senhainicial varchar(2),
 ativo int,
 ultimologin datetime,
+account_non_expired bit(1) DEFAULT NULL,
+account_non_locked bit(1) DEFAULT NULL,
+credentials_non_expired bit(1) DEFAULT NULL,
+enabled bit(1) DEFAULT NULL,
 
  constraint login_pk PRIMARY KEY (idlogin)
 
@@ -71,8 +75,13 @@ idperfil int  not null,
 
 constraint pk_perfil_benef primary key (idperfil_benef),
 constraint fk_perfilbenef_perfil foreign key (idperfil) references perfil(idperfil),
-constraint fk_perfil_benef foreign key (idlogin) references prestador(idlogin)
+constraint fk_perfil_benef foreign key (idlogin) references login(idlogin)
 
 );
+
+alter table login add account_non_expired bit(1) DEFAULT NULL;
+alter table login add account_non_locked bit(1) DEFAULT NULL;
+alter table login add credentials_non_expired bit(1) DEFAULT NULL;
+alter table login add enabled bit(1) DEFAULT NULL;
 
 
