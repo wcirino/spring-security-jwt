@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -34,7 +35,20 @@ public class JwtTokenFilter extends GenericFilterBean {
 				SecurityContextHolder.getContext().setAuthentication(auth);
 			}
 		}
-		chain.doFilter(request, response);
+		HttpServletResponse resp = (HttpServletResponse) response;
+		HttpServletRequest req = (HttpServletRequest) request;
+		
+		resp.setHeader("Access-Control-Allow-Origin", "*");
+        resp.setHeader("Access-Control-Allow-Credentials", "true");
+		resp.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
+    	resp.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept");
+    	resp.setHeader("Access-Control-Max-Age", "3600");
+
+    	if ("OPTIONS".equalsIgnoreCase(req.getMethod())) {
+			resp.setStatus(HttpServletResponse.SC_OK);
+		} else {
+			chain.doFilter(request, response);
+		}
 	}
 
 } 

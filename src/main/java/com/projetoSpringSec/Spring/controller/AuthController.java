@@ -24,7 +24,7 @@ import com.projetoSpringSec.Spring.security.jwt.JwtTokenProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value="medico", description = "API de medicos", tags = {"EndPoint-medico"})
+@Api(value="medico", description = "API de Autenticação", tags = {"EndPoint-Autenticação"})
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
