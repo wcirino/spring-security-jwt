@@ -10,5 +10,6 @@ public interface LoginRepository extends JpaRepository<Login, Integer>{
 
 	Login findByIdlogin(int id);
 	Login save(int id);
+	Login findByLogin(String login);
 	
 }

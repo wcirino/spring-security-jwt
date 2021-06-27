@@ -26,5 +26,11 @@ public class UtilController {
 	public ResponseEntity<?> findAllCidade(@PathVariable int id){
 		return new ResponseEntity<>(proxyutil.findAllCidade(id),HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/login/{login}")
+	public ResponseEntity<?> findLogin(@PathVariable String login){
+		String status = proxyutil.findByLoginservice(login);
+		return new ResponseEntity<>(status,HttpStatus.ACCEPTED);
+	}
 }
  

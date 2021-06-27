@@ -1,5 +1,6 @@
 package com.projetoSpringSec.Spring.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.projetoSpringSec.Spring.dto.Beneficiario;
 import com.projetoSpringSec.Spring.dto.Login;
 import com.projetoSpringSec.Spring.repository.BeneficiarioRepository;
-import com.projetoSpringSec.Spring.repository.LoginRepository;
 
 @Service
 public class BeneficiarioService {
@@ -19,6 +19,9 @@ public class BeneficiarioService {
 	
 	@Autowired
 	private LoginService proxyLogin;
+	
+	@Autowired
+	private UtilService proxyutil;
 	
 	public Beneficiario find_beneficiario_id(int id) throws Exception{
 		Optional<Beneficiario> obj = Optional.ofNullable(proxyBenef.findByIdbenef(id));
@@ -32,8 +35,10 @@ public class BeneficiarioService {
 	
 	public Beneficiario InsertBeneficiario(Beneficiario dto) throws Exception{
 		if(!proxyBenef.existsById(dto.getIdbenef())) {
+			dto.setData_cadas(new Date(System.currentTimeMillis()));
 			Login lg = proxyLogin.saveService(dto.getIdlogin());
 			dto.setIdlogin(lg);
+			dto.setCarteirinha(proxyutil.GerandoCarteirinha());
 			Beneficiario obj = proxyBenef.save(dto);
 			return obj;
 		}
