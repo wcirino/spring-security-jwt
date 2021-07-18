@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.projetoSpringSec.Spring.exception.CepException;
 import com.projetoSpringSec.Spring.exception.ExceptionResponse;
 import com.projetoSpringSec.Spring.exception.InvalidjwtAuthenticationException;
 import com.projetoSpringSec.Spring.exception.ResourceNotFoundException;
@@ -42,6 +43,16 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 	
 	@ExceptionHandler(InvalidjwtAuthenticationException.class)
 	public final ResponseEntity<ExceptionResponse> invalidJwtAuthenticationException(Exception ex, WebRequest request) {
+		ExceptionResponse exceptionResponse = 
+				new ExceptionResponse(
+						new Date(),
+						ex.getMessage(),
+						request.getDescription(false));
+		return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(CepException.class)
+	public final ResponseEntity<ExceptionResponse> CepHandException(Exception ex, WebRequest request) {
 		ExceptionResponse exceptionResponse = 
 				new ExceptionResponse(
 						new Date(),

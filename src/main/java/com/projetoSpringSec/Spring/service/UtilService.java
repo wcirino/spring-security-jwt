@@ -5,10 +5,13 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.projetoSpringSec.Spring.dto.Cidade;
 import com.projetoSpringSec.Spring.dto.Estado;
 import com.projetoSpringSec.Spring.dto.Login;
+import com.projetoSpringSec.Spring.dto.cep;
+import com.projetoSpringSec.Spring.exception.CepException;
 import com.projetoSpringSec.Spring.repository.CidadeRepository;
 import com.projetoSpringSec.Spring.repository.EstadoRepository;
 import com.projetoSpringSec.Spring.repository.LoginRepository;
@@ -64,4 +67,21 @@ public class UtilService {
 		 
 		 return carteirinha;
 	}
+    
+    public cep findCep(String cp) {
+    	
+    	try {
+    			String uri = "https://viacep.com.br/ws/"+cp+"/json/";     	
+    			RestTemplate api = new RestTemplate();
+    			cep cepDto = api.getForObject(uri,cep.class);
+    			if(cepDto != null) {
+    				return cepDto;
+    			}
+    			else
+    				throw new CepException("Erro cep null");
+    		}
+    	catch (Exception e) {
+		   throw new CepException("Erro no cep");
+		}
+    }
 }

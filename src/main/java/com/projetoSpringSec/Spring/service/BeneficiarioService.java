@@ -32,7 +32,7 @@ public class BeneficiarioService {
 		Optional<List<Beneficiario>> obj = Optional.ofNullable(proxyBenef.findAll());
 		return obj.orElseThrow(() -> new Exception());
 	}
-	
+		
 	public Beneficiario InsertBeneficiario(Beneficiario dto) throws Exception{
 		if(!proxyBenef.existsById(dto.getIdbenef())) {
 			dto.setData_cadas(new Date(System.currentTimeMillis()));

@@ -32,5 +32,10 @@ public class UtilController {
 		String status = proxyutil.findByLoginservice(login);
 		return new ResponseEntity<>(status,HttpStatus.ACCEPTED);
 	}
+	
+	@GetMapping(value = "/cep/{cep}")
+	public ResponseEntity<?> findCep(@PathVariable String cep){
+		return new ResponseEntity<>(proxyutil.findCep(cep),HttpStatus.OK);
+	}
 }
  

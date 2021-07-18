@@ -21,11 +21,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Data
 @Entity
 @Table(name = "beneficiario")
-public class Beneficiario implements Serializable{
-	
+public class BeneficiarioLombok implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
