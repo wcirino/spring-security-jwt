@@ -84,4 +84,14 @@ alter table login add account_non_locked bit(1) DEFAULT NULL;
 alter table login add credentials_non_expired bit(1) DEFAULT NULL;
 alter table login add enabled bit(1) DEFAULT NULL;
 
+create table RecuperaSenha(
+ idtoken int auto_increment,
+idlogin int not null,
+token varchar(100) not null,
+ultimologin datetime,
+statusToken varchar(1) not null,
+
+ constraint login_pk PRIMARY KEY (idtoken),
+ constraint fk_token_login foreign key(idlogin) references login(idlogin)
+);
 

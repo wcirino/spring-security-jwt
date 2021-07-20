@@ -15,16 +15,14 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import lombok.AllArgsConstructor;
+import org.springframework.hateoas.RepresentationModel;
+
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 @Entity
 @Table(name = "beneficiario")
-public class Beneficiario implements Serializable{
+public class Beneficiario  extends RepresentationModel<Beneficiario> implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -79,5 +77,9 @@ public class Beneficiario implements Serializable{
 	
 	@Column(name="ativo")
 	private String ativo;
+	
+	public Beneficiario() {
+		
+	}
 	
 }
