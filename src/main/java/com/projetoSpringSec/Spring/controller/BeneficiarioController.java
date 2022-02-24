@@ -45,6 +45,13 @@ public class BeneficiarioController {
 		return new ResponseEntity<>(benef,HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/beneficiarios")
+	public ResponseEntity<?> findAllBeneficiarios() throws Exception{
+		List<Beneficiario> benef = proxyBenef.findAll_beneficiario();
+		return new ResponseEntity<>(benef,HttpStatus.OK);
+	}
+
+	
 	@PostMapping(value = "/beneficiario")
 	public ResponseEntity<?> InsertBeneficiario(@RequestBody Beneficiario dto)throws Exception{
 		return new  ResponseEntity<>(proxyBenef.InsertBeneficiario(dto),HttpStatus.CREATED);

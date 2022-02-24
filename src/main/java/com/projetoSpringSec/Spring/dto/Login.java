@@ -35,13 +35,13 @@ public class Login implements Serializable {
 	private  String senhainicial;
 	
 	@Column(name="ativo")
-	private  String ativo;
+	private  int ativo;
 	
 	@Column(name="ultimologin")
 	private  String ultimologin;
 
 	public Login(int idlogin, String login, String senha, @Email(message = "Por favor, validar o email") String email,
-			String senhainicial, String ativo, String ultimologin) {
+			String senhainicial, int ativo, String ultimologin) {
 		super();
 		this.idlogin = idlogin;
 		this.login = login;
@@ -96,11 +96,11 @@ public class Login implements Serializable {
 		this.senhainicial = senhainicial;
 	}
 
-	public String getAtivo() {
+	public int getAtivo() {
 		return ativo;
 	}
 
-	public void setAtivo(String ativo) {
+	public void setAtivo(int ativo) {
 		this.ativo = ativo;
 	}
 
@@ -120,7 +120,7 @@ public class Login implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((ativo == null) ? 0 : ativo.hashCode());
+		result = prime * result + ativo;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + idlogin;
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
@@ -139,10 +139,7 @@ public class Login implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Login other = (Login) obj;
-		if (ativo == null) {
-			if (other.ativo != null)
-				return false;
-		} else if (!ativo.equals(other.ativo))
+		if (ativo != other.ativo)
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -173,6 +170,8 @@ public class Login implements Serializable {
 			return false;
 		return true;
 	}
+
+	
 	
 	
 }

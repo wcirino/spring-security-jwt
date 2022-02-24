@@ -38,14 +38,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
 				.authorizeRequests()
-				.antMatchers("/auth/signin", "/api-docs/**", "/api-util/**","/swagger-ui.html**").permitAll()
-				.antMatchers(HttpMethod.POST, "/api-beneficiario/beneficiario").permitAll()
-				.antMatchers(HttpMethod.GET,  "/api-beneficiario/beneficiario").permitAll()
-				.antMatchers(HttpMethod.GET,  "/api-beneficiario/beneficiario/").permitAll()
-				.anyRequest()
-				.authenticated()
+				.antMatchers("/auth/signin", "/api-docs/**", "/swagger-ui.html**").permitAll()
+				.antMatchers(HttpMethod.POST, "/api-beneficiario/beneficiario").permitAll()//R
+				.antMatchers(HttpMethod.GET,  "/api-beneficiario/beneficiario").permitAll()//R
+				.antMatchers(HttpMethod.GET,  "/api-beneficiario/beneficiario/").permitAll()//R
+				.antMatchers(HttpMethod.GET,  "/api-consulta/consulta-all").permitAll()//R
+				.antMatchers(HttpMethod.GET,  "/api-consulta/consulta-date/").permitAll() //R
+				.antMatchers(HttpMethod.GET,  "/api-consulta/consulta-one-date/").permitAll() //R
+				.antMatchers(HttpMethod.POST, "/api-consulta/consulta").permitAll() // R
+//				-- Para colocar certificação
+//				.anyRequest()
+//				.authenticated()
 			.and()
 			.apply(new JwtConfigurer(tokenProvider));
 	}
-
+	
+//	protected void configure(HttpSecurity http) throws Exception {
+//		http
+//			.httpBasic().disable()
+//			.csrf().disable()
+//			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//			.and()
+//				.authorizeRequests()
+//				.antMatchers("/auth/signin", "/api-docs/**", "/swagger-ui.html**").permitAll()
+//				.antMatchers(HttpMethod.POST, "/api-beneficiario/beneficiario").permitAll()
+//				.antMatchers(HttpMethod.GET,  "/api-beneficiario/beneficiario").permitAll()
+//				.antMatchers(HttpMethod.GET,  "/api-beneficiario/beneficiario/").permitAll()
+//				.antMatchers(HttpMethod.GET,  "/api-consulta/consulta-all").permitAll()
+//				.antMatchers("/api/**").authenticated()
+//				.antMatchers("/users").denyAll()
+//			.and()
+//			.apply(new JwtConfigurer(tokenProvider));
+//	}
+	
 }
