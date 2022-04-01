@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import org.modelmapper.ModelMapper;
 
 import com.projetoSpringSec.Spring.config.ModelMapperConfig;
 import com.projetoSpringSec.Spring.dto.Consultas;
+import com.projetoSpringSec.Spring.entity.ConsultaPageDTO;
 import com.projetoSpringSec.Spring.entity.consultaDTO;
 import com.projetoSpringSec.Spring.repository.ConsultasRepository;
 
@@ -93,6 +95,21 @@ public class ConsultasService {
 		return d;
 	}
 
+	public ConsultaPageDTO findAll_page_Consultas_Service(Pageable pageble) throws Exception {
+		Optional<Page<Consultas>> obj = Optional.ofNullable(consulProxy.findAll(pageble));
+		obj.orElseThrow(() -> new Exception());
+		ConsultaPageDTO dto = new ConsultaPageDTO(obj.get().getContent(), obj.get().getTotalElements(),
+												  obj.get().getTotalPages(), obj.get().getSize(),
+												  obj.get().getNumberOfElements());
+		return dto;
+	}
+	
+	public Page<Consultas> findAll_page_Consultas(Pageable pageble) throws Exception {
+		findAll_page_Consultas_Service(pageble);
+		Optional<Page<Consultas>> obj = Optional.ofNullable(consulProxy.findAll(pageble));
+		return obj.orElseThrow(() -> new Exception());
+	}
+	
 	public List<Consultas> findAll_Consultas(Pageable pageble) throws Exception {
 		Optional<List<Consultas>> obj = Optional.ofNullable(consulProxy.findAll(pageble).getContent());
 		return obj.orElseThrow(() -> new Exception());
