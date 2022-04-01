@@ -4,8 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projetoSpringSec.Spring.dto.Consultas;
+import com.projetoSpringSec.Spring.entity.ConsultaPageDTO;
 import com.projetoSpringSec.Spring.entity.consultaDTO;
 import com.projetoSpringSec.Spring.service.ConsultasService;
 
@@ -78,9 +82,44 @@ public class ConsultasController {
 			@RequestParam(value = "limit", defaultValue = "10") int limit
 	) throws Exception{
 		
-		Pageable pageble = PageRequest.of(page, limit);
+		String direction = "desc";
+        var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
 		
-		List<Consultas> consult = proxyConsult.findAll_Consultas(pageble);
+		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "codbenef"));
+		
+		List<Consultas> consult = proxyConsult.findAll_Consultas(pageable);
+		return new ResponseEntity<>(consult,HttpStatus.OK);
+	}
+	
+	@ApiOperation(value ="Consulta paginada all sem lista com page")
+	@GetMapping(value = "/consulta-all-page-/")
+	public ResponseEntity<?> findConsulta_page(
+			@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "limit", defaultValue = "10") int limit
+	) throws Exception{
+		
+		String direction = "desc";
+        var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
+		
+		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "codbenef"));
+		
+		Page<Consultas> consult = proxyConsult.findAll_page_Consultas(pageable);
+		return new ResponseEntity<>(consult,HttpStatus.OK);
+	}
+	
+	@ApiOperation(value ="Consulta paginada all sem lista com page(DTO)")
+	@GetMapping(value = "/consulta-all-page-dto/")
+	public ResponseEntity<?> findConsulta_page_dto(
+			@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "limit", defaultValue = "10") int limit
+	) throws Exception{
+		
+		String direction = "desc";
+        var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
+		
+		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "codbenef"));
+		
+		ConsultaPageDTO consult = proxyConsult.findAll_page_Consultas_Service(pageable);
 		return new ResponseEntity<>(consult,HttpStatus.OK);
 	}
 	

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -38,6 +39,7 @@ public interface ConsultasRepository extends JpaRepository<Consultas, Integer> {
 	@Query(value = "update Consultas c set c.status = :status where c.idconsulta = :id")
 	void DesativarPrestador(@Param("status") String status, @Param("id") int id);
 	    
+	
 	
 //	@Query(value = "SELECT b from clienteparticularDTO b WHERE b.nome_comp like %:nomeCompleto%")
 //	 public List<clienteparticularDTO> buscaPorLike(String nomeCompleto);
