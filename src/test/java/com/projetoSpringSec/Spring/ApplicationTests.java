@@ -56,4 +56,15 @@ class ApplicationTests {
 		.then()
 		.statusCode(HttpStatus.OK.value());
 	}
+	
+	@Test
+	public void BuscaBeneficiarioHTTP200Test3() {
+		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+		given()
+		.accept(ContentType.JSON)
+		.when()
+		.get("/beneficiario-consult/1")
+		.then()
+		.statusCode(HttpStatus.OK.value());
+	}
 }
