@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiOperation;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-
+@Api(value = "Beneficiario", description = "Beneficiario do sistema ", tags = {"Beneficiario EndPoint"})
 @RestController
 @RequestMapping(value = "/api-beneficiario")
 public class BeneficiarioController {
@@ -30,6 +30,11 @@ public class BeneficiarioController {
 	@Autowired
 	private BeneficiarioService proxyBenef;
 
+	@GetMapping(value = "/beneficiario-consult/{id}")
+	public ResponseEntity<?> findBeneficiarioDto(@PathVariable int id) throws Exception {
+		return new ResponseEntity<>(proxyBenef.find_beneficiario_id_dto(id),HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/beneficiario/{id}")
 	public ResponseEntity<?> findBeneficiario(@PathVariable int id) throws Exception {
 		return new ResponseEntity<>(proxyBenef.find_beneficiario_id(id),HttpStatus.OK);

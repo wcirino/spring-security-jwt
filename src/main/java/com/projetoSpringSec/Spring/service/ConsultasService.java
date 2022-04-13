@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
 
 import com.projetoSpringSec.Spring.config.ModelMapperConfig;
+import com.projetoSpringSec.Spring.dto.Consulta;
 import com.projetoSpringSec.Spring.dto.Consultas;
 import com.projetoSpringSec.Spring.entity.ConsultaPageDTO;
 import com.projetoSpringSec.Spring.entity.consultaDTO;
@@ -33,6 +34,10 @@ public class ConsultasService {
 	private ModelMapper m = new ModelMapper();
 	
 	public List<Consultas> findAll_Consultas() throws Exception{
+		
+		List<Consultas> c = consulProxy.getAll();
+		Consultas c1 = consulProxy.getConsultasByidconsulta(1);
+		List<Consultas> c2 = consulProxy.BuscaQueryNative2();
 		Optional<List<Consultas>> obj = Optional.ofNullable(consulProxy.findAll());
 		return obj.orElseThrow(() -> new Exception());
 	}

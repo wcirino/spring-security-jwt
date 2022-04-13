@@ -13,9 +13,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.projetoSpringSec.Spring.dto.Consultas;
+import com.projetoSpringSec.Spring.repository.custom.ConsultasRepositoryCustom;
 
 @Repository
-public interface ConsultasRepository extends JpaRepository<Consultas, Integer> {
+public interface ConsultasRepository extends JpaRepository<Consultas, Integer>, ConsultasRepositoryCustom {
 
 	//List<Consultas> findByIdconsulta(int id);
 	
@@ -37,8 +38,7 @@ public interface ConsultasRepository extends JpaRepository<Consultas, Integer> {
 	@Transactional
 	@Modifying
 	@Query(value = "update Consultas c set c.status = :status where c.idconsulta = :id")
-	void DesativarPrestador(@Param("status") String status, @Param("id") int id);
-	    
+	void DesativarPrestador(@Param("status") String status, @Param("id") int id);   
 	
 	
 //	@Query(value = "SELECT b from clienteparticularDTO b WHERE b.nome_comp like %:nomeCompleto%")

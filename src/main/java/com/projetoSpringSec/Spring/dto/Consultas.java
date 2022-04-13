@@ -10,7 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="consultas")
@@ -25,8 +28,10 @@ public class Consultas {
 	@JoinColumn(name = "codprestador", referencedColumnName="idPrest")
 	private Prestador codprestador;
 	
-	@Column(name = "codbenef")
-	private int codbenef;
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.REMOVE) 
+	@JoinColumn(name = "codbenef", referencedColumnName="idbenef")
+	private Beneficiario codbenef;
 	
 	@Column(name = "dataconsulta")
 	private Date dataconsulta;
@@ -39,12 +44,14 @@ public class Consultas {
 	
 	@Column(name = "statusConsulta")
 	private String status;
-		
+	
+//	private Consultas consulta;
+	
 	public Consultas() {
 		super();
 	}
 
-	public Consultas(int idconsulta, Prestador codprestador, int codbenef, Date dataconsulta, Date datasolicitacao,
+	public Consultas(int idconsulta, Prestador codprestador, Beneficiario codbenef, Date dataconsulta, Date datasolicitacao,
 			int tipoconsulta, String status) {
 		super();
 		this.idconsulta = idconsulta;
@@ -72,11 +79,11 @@ public class Consultas {
 		this.codprestador = codprestador;
 	}
 
-	public int getCodbenef() {
+	public Beneficiario getCodbenef() {
 		return codbenef;
 	}
 
-	public void setCodbenef(int codbenef) {
+	public void setCodbenef(Beneficiario codbenef) {
 		this.codbenef = codbenef;
 	}
 
@@ -116,7 +123,7 @@ public class Consultas {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + codbenef;
+		result = prime * result + ((codbenef == null) ? 0 : codbenef.hashCode());
 		result = prime * result + ((codprestador == null) ? 0 : codprestador.hashCode());
 		result = prime * result + ((dataconsulta == null) ? 0 : dataconsulta.hashCode());
 		result = prime * result + ((datasolicitacao == null) ? 0 : datasolicitacao.hashCode());
@@ -135,7 +142,10 @@ public class Consultas {
 		if (getClass() != obj.getClass())
 			return false;
 		Consultas other = (Consultas) obj;
-		if (codbenef != other.codbenef)
+		if (codbenef == null) {
+			if (other.codbenef != null)
+				return false;
+		} else if (!codbenef.equals(other.codbenef))
 			return false;
 		if (codprestador == null) {
 			if (other.codprestador != null)
@@ -163,5 +173,12 @@ public class Consultas {
 			return false;
 		return true;
 	}
+
+	/*
+	 * public Consultas getConsulta() { return consulta; }
+	 * 
+	 * public void setConsulta(Consultas consulta) { this.consulta = consulta; }
+	 */
+
 	
 }
