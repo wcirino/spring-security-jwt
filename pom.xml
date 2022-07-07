@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.projetoSpringSec</groupId>
-	<artifactId>Spring</artifactId>
+	<artifactId>cn-clinica-novaEra</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Spring</name>
+	<name>cn-clinica-novaEra</name>
 	<description> project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
