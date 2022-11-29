@@ -12,7 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -81,8 +81,7 @@ public class Beneficiario  extends RepresentationModel<Beneficiario> implements 
 	@Column(name="ativo")
 	private String ativo;
 	
-	@OneToMany(mappedBy = "codbenef")
-	private List<Consultas> consultas = new ArrayList<Consultas>();
+//	private List<Consultas> consultas = new ArrayList<Consultas>();
 	
 	public Beneficiario() {
 		
